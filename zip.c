@@ -904,25 +904,25 @@ extern zipFile ZEXPORT zipOpen64(const void *path, int append)
     return zipOpen3(path, append, 0, NULL, NULL);
 }
 
-extern int ZEXPORT zipOpenNewFileInZip_internal(zipFile file,
-                                                const char *filename,
-                                                const zip_fileinfo *zipfi,
-                                                const void *extrafield_local,
-                                                uint16_t size_extrafield_local,
-                                                const void *extrafield_global,
-                                                uint16_t size_extrafield_global,
-                                                const char *comment,
-                                                uint16_t flag_base,
-                                                int zip64,
-                                                uint16_t method,
-                                                int level,
-                                                int raw,
-                                                int windowBits,
-                                                int memLevel,
-                                                int strategy,
-                                                const char *password,
-                                                int aes,
-                                                uint16_t version_madeby)
+extern int ZEXPORT zipOpenNewFileInZip5(zipFile file,
+                                        const char *filename,
+                                        const zip_fileinfo *zipfi,
+                                        const void *extrafield_local,
+                                        uint16_t size_extrafield_local,
+                                        const void *extrafield_global,
+                                        uint16_t size_extrafield_global,
+                                        const char *comment,
+                                        uint16_t flag_base,
+                                        int zip64,
+                                        uint16_t method,
+                                        int level,
+                                        int raw,
+                                        int windowBits,
+                                        int memLevel,
+                                        int strategy,
+                                        const char *password,
+                                        int aes,
+                                        uint16_t version_madeby)
 {
     zip64_internal *zi = NULL;
     uint64_t size_available = 0;
@@ -1030,6 +1030,7 @@ extern int ZEXPORT zipOpenNewFileInZip_internal(zipFile file,
     zi->ci.number_disk = zi->number_disk;
 
     /* Write central directory header */
+    /* https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT */
     central_dir = (unsigned char*)zi->ci.central_header;
     zipWriteValueToMemoryAndMove(&central_dir, (uint32_t)CENTRALHEADERMAGIC, 4);
     zipWriteValueToMemoryAndMove(&central_dir, version_madeby, 2);
@@ -1265,16 +1266,6 @@ extern int ZEXPORT zipOpenNewFileInZip_internal(zipFile file,
     return err;
 }
 
-extern int ZEXPORT zipOpenNewFileInZip5(zipFile file, const char *filename, const zip_fileinfo *zipfi,
-    const void *extrafield_local, uint16_t size_extrafield_local, const void *extrafield_global,
-    uint16_t size_extrafield_global, const char *comment, uint16_t flag_base, int zip64, uint16_t method, int level, int raw,
-    int windowBits, int memLevel, int strategy, const char *password, int aes)
-{
-    return zipOpenNewFileInZip_internal(file, filename, zipfi, extrafield_local, size_extrafield_local, extrafield_global,
-        size_extrafield_global, comment, flag_base, zip64, method, level, raw, windowBits, memLevel, strategy, password, aes,
-        VERSIONMADEBY);
-}
-
 extern int ZEXPORT zipOpenNewFileInZip4_64(zipFile file, const char *filename, const zip_fileinfo *zipfi,
     const void *extrafield_local, uint16_t size_extrafield_local, const void *extrafield_global,
     uint16_t size_extrafield_global, const char *comment, uint16_t method, int level, int raw, int windowBits, int memLevel,
@@ -1284,7 +1275,7 @@ extern int ZEXPORT zipOpenNewFileInZip4_64(zipFile file, const char *filename, c
 #ifdef HAVE_AES
     aes = 1;
 #endif
-    return zipOpenNewFileInZip_internal(file, filename, zipfi, extrafield_local, size_extrafield_local, extrafield_global,
+    return zipOpenNewFileInZip5(file, filename, zipfi, extrafield_local, size_extrafield_local, extrafield_global,
         size_extrafield_global, comment, flag_base, zip64, method, level, raw, windowBits, memLevel, strategy, password, aes,
         version_madeby);
 }

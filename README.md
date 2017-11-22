@@ -82,3 +82,7 @@ unzOpen2_64(filename, &filefunc64)
 ### Apple libcompression
 
 + Requires #define HAVE_APPLE_COMPRESSION
+
+## Doc
+
+* [.ZIP File Format Specification](https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT)
