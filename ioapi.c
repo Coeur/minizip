@@ -128,7 +128,7 @@ static voidpf ZCALLBACK fopen_file_func(voidpf opaque, const char *filename, int
     return file;
 }
 
-static voidpf ZCALLBACK fopen64_file_func(voidpf opaque, const void *filename, int mode)
+static voidpf ZCALLBACK fopen64_file_func(voidpf opaque, const char *filename, int mode)
 {
     FILE* file = NULL;
     const char *mode_fopen = NULL;
@@ -141,8 +141,8 @@ static voidpf ZCALLBACK fopen64_file_func(voidpf opaque, const void *filename, i
 
     if ((filename != NULL) && (mode_fopen != NULL))
     {
-        file = fopen64((const char*)filename, mode_fopen);
-        return file_build_ioposix(file, (const char*)filename);
+        file = fopen64(filename, mode_fopen);
+        return file_build_ioposix(file, filename);
     }
     return file;
 }

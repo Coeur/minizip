@@ -93,7 +93,7 @@ typedef struct zlib_filefunc_def_s
 
 typedef uint64_t (ZCALLBACK *tell64_file_func)    (voidpf opaque, voidpf stream);
 typedef long     (ZCALLBACK *seek64_file_func)    (voidpf opaque, voidpf stream, uint64_t offset, int origin);
-typedef voidpf   (ZCALLBACK *open64_file_func)    (voidpf opaque, const void *filename, int mode);
+typedef voidpf   (ZCALLBACK *open64_file_func)    (voidpf opaque, const char *filename, int mode);
 typedef voidpf   (ZCALLBACK *opendisk64_file_func)(voidpf opaque, voidpf stream, uint32_t number_disk, int mode);
 
 typedef struct zlib_filefunc64_def_s
