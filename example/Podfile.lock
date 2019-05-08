@@ -1,0 +1,27 @@
+PODS:
+  - Minizip (2.8.6):
+    - Minizip/BZIP2 (= 2.8.6)
+    - Minizip/Core (= 2.8.6)
+    - Minizip/PKCRYPT (= 2.8.6)
+    - Minizip/WZAES_APPLE (= 2.8.6)
+  - Minizip/BZIP2 (2.8.6):
+    - Minizip/Core
+  - Minizip/Core (2.8.6)
+  - Minizip/PKCRYPT (2.8.6):
+    - Minizip/Core
+  - Minizip/WZAES_APPLE (2.8.6):
+    - Minizip/Core
+
+DEPENDENCIES:
+  - Minizip (from `..`)
+
+EXTERNAL SOURCES:
+  Minizip:
+    :path: ".."
+
+SPEC CHECKSUMS:
+  Minizip: f431d590eee5c285476138e9942513ec1b69d5a5
+
+PODFILE CHECKSUM: d2fb5240475b9a05405f99c2d8e31714b855e5dc
+
+COCOAPODS: 1.6.1

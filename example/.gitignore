@@ -1,0 +1,8 @@
+# Xcode
+xcuserdata/
+
+# AppCode
+.idea/
+
+# CocoaPods
+Pods/
