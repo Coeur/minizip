@@ -407,3 +407,12 @@ int zipClose2_MZ(zipFile file, const char *global_comment, uint16_t version_made
 
     return err;
 }
+
+int zipAlreadyThere(zipFile file, char const *name) {
+    mz_zip_compat *compat = (mz_zip_compat *)file;
+    if (!compat)
+        return ZIP_PARAMERROR;
+
+    int32_t err = mz_zip_locate_entry(compat->handle, name, 0);
+    return !err;
+}

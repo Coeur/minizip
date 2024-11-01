@@ -149,8 +149,8 @@ ZEXPORT int zipWriteInFileInZip(zipFile file, const void *buf, uint32_t len);
 ZEXPORT int zipCloseFileInZipRaw(zipFile file, unsigned long uncompressed_size, unsigned long crc32);
 ZEXPORT int zipCloseFileInZipRaw64(zipFile file, uint64_t uncompressed_size, unsigned long crc32);
 ZEXPORT int zipCloseFileInZip(zipFile file);
-/* zipAlreadyThere is too new */
 ZEXPORT int zipClose(zipFile file, const char *global_comment);
+ZEXPORT int zipAlreadyThere(zipFile file, char const *name);
 /* zipRemoveExtraInfoBlock is not supported */
 
 /* Compatibility layer with older minizip-ng (mz_zip.h). */
